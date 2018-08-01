@@ -75,6 +75,31 @@ cd <- function(...) {
   return( invisible(NULL) )
 }
 
+##' k-means Diagnostic Plot
+##' 
+##' Using \code{kmeans}, plot percentage variance explained vs. number of clusters.
+##' Used as a means of picking \code{k}.
+##' 
+##' @importFrom lattice xyplot panel.grid panel.polygon panel.xyplot panel.abline
+##' @param dat numeric matrix of data, or an object that can be coerced to 
+##' such a matrix (such as a numeric vector or a data frame with all 
+##' numeric columns).
+##' @param nmax maximum number of clusters to examine
+##' @param ... optional arguments passed to xyplot
+##' @seealso \code{\link{kmeans}}
+##' @export
+##' @examples
+##' data(iris)
+##' kmeans_plot(iris[,1:4])
+kmeans_plot <- function( dat, nmax=20, ... ) {
+  y <- rep(0,nmax)
+  for( i in 1:nmax ) {
+    tmp <- kmeans( dat, i )
+    y[i] <- tmp$betweenss / tmp$totss
+  }
+  print( xyplot( y ~ (1:nmax), type = c("p", "l"), ... ) )
+}
+
 ##' Strip File Extension
 ##' 
 ##' Strips the extension from a file name. By default, we assume the extension 
