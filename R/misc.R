@@ -145,3 +145,22 @@ remove_na <- function(x) {
     return( x[ !is.na(x) ] )
   }
 }
+
+##' Midrange
+##' 
+##' Point halfway between the min and the max.
+##' 
+##' The point halfway between the min and the max. The mid-range minimizes the maximum distance to a set of points.
+##' 
+##' @param x A numeric vector.
+##' @return A numeric scalar vector.
+##' @export
+##' @examples
+##' midrange(iris[,1])
+##' midrange(iris[,2])
+##' midrange(iris[,3])
+##' midrange(iris[,4])
+midrange <- function(x){
+  r <- range(x)
+  (r[2]-r[1])/2+r[1]
+}

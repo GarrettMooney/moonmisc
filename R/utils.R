@@ -56,6 +56,7 @@ i <- function(d, n=6) rbind(head(d, n), tail(d, n))
 #' @export
 hh <- function(d) d[1:5, 1:5]
 
+#' System convenience functions ------------------------------------------------
 #' Glue to shell functions
 #' @export
 shell_transformer <- function(code, envir) {
@@ -65,3 +66,75 @@ shell_transformer <- function(code, envir) {
 glue_sh <- function(..., .envir = parent.frame()) {
   glue::glue(..., .envir = .envir, .transformer = shell_transformer)
 }
+
+#' Open pdf with okular
+#' @export
+okular <- function(path_to_file) {
+  ok_path <- normalizePath(Sys.which('okular'))
+  system(glue_sh('{ok_path} {path_to_file}'), wait = F)
+}
+
+#' Encode text (used as an argument for google())
+encode <- function(string) {
+  system(glue_sh("echo -n {string} |
+    perl -pe's/([^-_.~A-Za-z0-9])/sprintf(\"%%%02X\", ord($1))/seg'; "
+  ), intern = T)
+}
+
+#' Alias for google-chrome
+chrome <- normalizePath(Sys.which('google-chrome'))
+
+#' Search github
+#' @export
+github <- function(string) {
+  system(
+    glue_sh(
+      "{chrome} https://github.com/search?q={encode(string)};"
+    )
+  )
+}
+
+
+#' Search google
+#' @export
+google <- function(string) {
+  system(
+    glue_sh(
+      "{chrome} https://www.google.com/search?hl=en#q={encode(string)};"
+    )
+  )
+}
+
+#' Search stackoverlow
+#' @export
+stackoverflow <- function(string) {
+  system(
+    glue_sh(
+      "{chrome} https://stackoverflow.com/search?q={encode(string)};"
+    )
+  )
+}
+
+#' Search twitter
+#' @export
+twitter <- function(string) {
+  system(
+    glue_sh(
+      "{chrome} https://twitter.com/search?q={encode(string)};"
+    )
+  )
+}
+
+#' Search youtube
+#' @export
+youtube <- function(string) {
+  system(
+    glue_sh(
+      "<<chrome>> https://www.youtube.com/results?search_query=<<encode(string)>>&page={startPage?}&utm_source=opensearch;",
+      .open = "<<",
+      .close = ">>"
+    )
+  )
+}
+
+
