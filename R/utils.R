@@ -74,7 +74,15 @@ okular <- function(path_to_file) {
   system(glue_sh('{ok_path} {path_to_file}'), wait = F)
 }
 
+#' Compile LaTeX via xelatex
+#' @export
+xelatex <- function(path_to_file) {
+  system(glue_sh('xelatex --interaction=nonstopmode {path_to_file}'))
+  ## NOTE: ignores warnings/errors
+}
+
 #' Encode text (used as an argument for google())
+#' @export
 encode <- function(string) {
   system(glue_sh("echo -n {string} |
     perl -pe's/([^-_.~A-Za-z0-9])/sprintf(\"%%%02X\", ord($1))/seg'; "
@@ -82,6 +90,7 @@ encode <- function(string) {
 }
 
 #' Alias for google-chrome
+#' @export
 chrome <- normalizePath(Sys.which('google-chrome'))
 
 #' Search github
@@ -89,8 +98,8 @@ chrome <- normalizePath(Sys.which('google-chrome'))
 github <- function(string) {
   system(
     glue_sh(
-      "{chrome} https://github.com/search?q={encode(string)};"
-    )
+      "{chrome} https://github.com/search?q={encode(string)}; "
+    ), wait = F
   )
 }
 
@@ -101,7 +110,7 @@ google <- function(string) {
   system(
     glue_sh(
       "{chrome} https://www.google.com/search?hl=en#q={encode(string)};"
-    )
+    ), wait = F
   )
 }
 
@@ -111,7 +120,7 @@ stackoverflow <- function(string) {
   system(
     glue_sh(
       "{chrome} https://stackoverflow.com/search?q={encode(string)};"
-    )
+    ), wait = F
   )
 }
 
@@ -121,7 +130,7 @@ twitter <- function(string) {
   system(
     glue_sh(
       "{chrome} https://twitter.com/search?q={encode(string)};"
-    )
+    ), wait = F
   )
 }
 
@@ -133,7 +142,7 @@ youtube <- function(string) {
       "<<chrome>> https://www.youtube.com/results?search_query=<<encode(string)>>&page={startPage?}&utm_source=opensearch;",
       .open = "<<",
       .close = ">>"
-    )
+    ), wait = F
   )
 }
 
