@@ -74,6 +74,13 @@ okular <- function(path_to_file) {
   system(glue_sh('{ok_path} {path_to_file}'), wait = F)
 }
 
+#' Compile LaTeX via xelatex
+#' @export
+xelatex <- function(path_to_file) {
+  system(glue_sh('xelatex --interaction=nonstopmode {path_to_file}'))
+  ## NOTE: ignores warnings/errors
+}
+
 #' Encode text (used as an argument for google())
 encode <- function(string) {
   system(glue_sh("echo -n {string} |
