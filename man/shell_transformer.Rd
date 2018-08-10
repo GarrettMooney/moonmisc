@@ -2,10 +2,12 @@
 % Please edit documentation in R/utils.R
 \name{shell_transformer}
 \alias{shell_transformer}
-\title{Glue to shell functions}
+\title{System convenience functions ------------------------------------------------
+Glue to shell functions}
 \usage{
 shell_transformer(code, envir)
 }
 \description{
+System convenience functions ------------------------------------------------
 Glue to shell functions
 }
