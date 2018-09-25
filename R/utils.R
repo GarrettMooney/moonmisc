@@ -29,6 +29,20 @@ NULL
     }
 }
 
+#' Default value for `length(x) == 0`.
+#'
+#' This infix function makes it easy to replace a length 0 value with a
+#' default value. It's inspired by the way that Ruby's or operation (`||`)
+#' works.
+#'
+#' @param x,y If `length(x) == 0`, will return `y`; otherwise returns
+#'   `x`.
+#' @export
+#' @name length-zero-default
+#' @examples
+#' "bacon" %|0|% "eggs"
+#' NULL %|0|% "eggs"
+`%|0|%` <- function(x, y) { if (length(x) == 0) y else x }
 
 #' Increase by 1
 #' @export

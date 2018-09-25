@@ -24,19 +24,19 @@ u <- function(...) {
 ##' 
 ##' This is a wrapper to a \code{length( grep( ... ) )}. See examples for usage.
 ##' Primarily intended for interactive, not programmatic, use.
-##' @param pattern regex pattern passed to \code{grep}.
 ##' @param x a vector on which we attempt to match \code{pattern} on.
+##' @param pattern regex pattern passed to \code{grep}.
 ##' @param perl boolean. use perl-compatible regular expressions?
 ##' @param ... additional arguments passed to \code{\link{grep}}.
 ##' @seealso \code{\link{re_exists}}
 ##' @export
 ##' @examples
 ##' x <- c("apple", "banana", "cherry")
-##' if( lg( "^ap", x ) > 0 ) {
+##' if( lg( x, "^ap" ) > 0 ) {
 ##'   print( "regular expression '^ap' found in 'x'" )
 ##'   }
-lg <- function(pattern, x, perl=TRUE, ...) {
-  length( grep( pattern, x, perl=perl, ... ) ) 
+lg <- function(x, pattern, perl=TRUE, ...) {
+  length( grep( x, pattern, perl=perl, ... ) ) 
 }
 
 ##' unlist( strsplit( ... ) )

@@ -4,12 +4,12 @@
 \alias{lg}
 \title{length( grep( ... ) )}
 \usage{
-lg(pattern, x, perl = TRUE, ...)
+lg(x, pattern, perl = TRUE, ...)
 }
 \arguments{
-\item{pattern}{regex pattern passed to \code{grep}.}
-
 \item{x}{a vector on which we attempt to match \code{pattern} on.}
+
+\item{pattern}{regex pattern passed to \code{grep}.}
 
 \item{perl}{boolean. use perl-compatible regular expressions?}
 
@@ -21,7 +21,7 @@ Primarily intended for interactive, not programmatic, use.
 }
 \examples{
 x <- c("apple", "banana", "cherry")
-if( lg( "^ap", x ) > 0 ) {
+if( lg( x, "^ap" ) > 0 ) {
   print( "regular expression '^ap' found in 'x'" )
   }
 }
