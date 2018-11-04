@@ -8,6 +8,20 @@
 #' @usage lhs \%>\% rhs
 NULL
 
+#' Inverse Value Matching
+#'
+#' Complement of \code{\%in\%}. Returns the elements of \code{x} that are not in \code{y}.
+#' @title \%nin\%
+#' @param x vector of items
+#' @param y vector of all values
+#' @return logical vecotor of items in x not in y
+#' @author Kieran Healy
+#' @rdname nin
+#' @export
+"%nin%" <- function(x, y) {
+  return( !(x %in% y) )
+}
+
 #' Default value for `NULL`.
 #'
 #' This infix function makes it easy to replace `NULL`s with a
