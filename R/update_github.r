@@ -23,6 +23,6 @@ update_github <- function() {
     repo = packageDescription(pac, fields = "GithubRepo")
     username = packageDescription(pac, fields = "GithubUsername")
 
-    install_github(repo = paste0(username, "/", repo))
+    try(install_github(repo = paste0(username, "/", repo)))
   })
 }
