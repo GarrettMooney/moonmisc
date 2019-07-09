@@ -7,6 +7,7 @@ Maintainer: Garrett Mooney <gmooney@mail.bradley.edu>
 Description: This package contains functions that I frequently use.
 License: GPL-3
 Encoding: UTF-8
+ByteCompile: true
 LazyData: true
 RoxygenNote: 6.1.1
 Imports: 
