@@ -6,4 +6,5 @@
 ##' @param ... Passed though
 ##' @return Nothing, but the desired library is attached
 ##' @author Dirk Eddelbuettel
+##' @export
 silent <- function(...) suppressMessages(library(...))
