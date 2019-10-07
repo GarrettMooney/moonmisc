@@ -1,18 +1,18 @@
-#'List objects in the workspace
-#'
-#'This function lists objects in the workspace in decreasing order of size,
-#'showing their memory usage and length/rows/columns as necessary.  This is
-#'the shorthand version. \code{.ls.objects} has more options.  This is taken
-#'from \url{http://stackoverflow.com/a/4951004/1757441}.
-#'
-#'@param n number of objects to list
-#'@param ... arguments to pass to \code{.ls.objects}
-#'@export
+##' List objects in the workspace
+##'
+##' This function lists objects in the workspace in decreasing order of size,
+##' showing their memory usage and length/rows/columns as necessary.  This is
+##' the shorthand version. \code{.ls.objects} has more options.  This is taken
+##' from \url{http://stackoverflow.com/a/4951004/1757441}.
+##'
+##' @param n number of objects to list
+##' @param ... arguments to pass to \code{.ls.objects}
+##' @export
 lso <- function(..., n=20) {
   .ls.objects(..., order.by="Size", decreasing=TRUE, head=TRUE, n=n)
 }
 
-#'@export
+##' @export
 .ls.objects <- function (pos = 1, pattern, order.by,
                          decreasing=FALSE, head=FALSE, n=5) {
   napply <- function(names, fn) sapply(names, function(x)

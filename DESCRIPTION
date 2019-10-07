@@ -9,7 +9,7 @@ License: GPL-3
 Encoding: UTF-8
 ByteCompile: true
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 6.1.99.9001
 Imports: 
     Rcpp,
     lattice,

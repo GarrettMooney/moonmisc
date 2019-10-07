@@ -5,13 +5,27 @@
 \alias{Rcpp_apply_generator}
 \title{Rcpp Apply Generator}
 \usage{
-rcpp_apply_generator(fun, includes = NULL, depends = NULL,
-  inline = TRUE, returnType = "double", name = NULL, file = NULL,
-  additional = NULL)
+rcpp_apply_generator(
+  fun,
+  includes = NULL,
+  depends = NULL,
+  inline = TRUE,
+  returnType = "double",
+  name = NULL,
+  file = NULL,
+  additional = NULL
+)
 
-Rcpp_apply_generator(fun, includes = NULL, depends = NULL,
-  inline = TRUE, returnType = "double", name = NULL, file = NULL,
-  additional = NULL)
+Rcpp_apply_generator(
+  fun,
+  includes = NULL,
+  depends = NULL,
+  inline = TRUE,
+  returnType = "double",
+  name = NULL,
+  file = NULL,
+  additional = NULL
+)
 }
 \arguments{
 \item{fun}{A character string defining the C++ function. It must be
