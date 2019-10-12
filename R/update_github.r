@@ -7,10 +7,10 @@
 ##' @export
 update_github <- function() {
   # check/load necessary packages
-  # devtools package
-  if (!("package:devtools" %in% search())) {
-    tryCatch(require(devtools), error = function(x) {warning(x); cat("Cannot load devtools package \n")})
-    on.exit(detach("package:devtools", unload=TRUE))
+  # remotes package
+  if (!("package:remotes" %in% search())) {
+    tryCatch(require(remotes), error = function(x) {warning(x); cat("Cannot load remotes package \n")})
+    on.exit(detach("package:remotes", unload=TRUE))
   }
 
   pkgs <- installed.packages(fields = "RemoteType")
