@@ -147,16 +147,12 @@ youtube <- function(string) {
   )
 }
 
-#' Ripped from https://github.com/r-lib/covr/blob/master/R/utils.R
+### Ripped from https://github.com/r-lib/covr/blob/master/R/utils.R
+
+#' compact
 #' @export
 compact <- function(x) {
   x[viapply(x, length) != 0]
-}
-
-#' windows check
-#' @export
-is_windows <- function() {
-  .Platform$OS.type == "windows"
 }
 
 #' identical infix
@@ -206,4 +202,57 @@ vlapply <- function(X, FUN, ...) vapply(X, FUN, ..., FUN.VALUE = logical(1))
 trim_ws <- function(x) {
     x <- sub("^[ \t\r\n]+", "", x, perl = TRUE)
   sub("[ \t\r\n]+$", "", x, perl = TRUE)
+}
+
+### Ripped from https://github.com/r-lib/pak/blob/master/R/utils.R
+
+#' format items
+#' @export
+format_items <- function (x) {
+  paste0(glue::glue_collapse(glue::backtick(x), sep = ", ", last = " and "))
+}
+
+#' string trim
+#' @export
+str_trim <- function (x) {
+  sub("^\\s+", "", sub("\\s+$", "", x))
+}
+
+#' list files
+#' @export
+list_files <- function(path) {
+    if (!file.exists(path)) return(character())
+  fs <- dir(path, full.names = TRUE)
+    basename(fs[! is_dir(fs)])
+}
+
+#' modify time
+#' @export
+file_mtime <- function(...) {
+    file.info(..., extra_cols = FALSE)$mtime
+}
+
+#' is directory
+#' @export
+is_dir <- function(...) {
+    file.info(..., extra_cols = FALSE)$isdir
+}
+
+get_minor_r_version <- function(x = getRversion()) {
+    x <- package_version(x)
+  vapply(unclass(x), function(x) paste(x[1:2], collapse = "."), character(1))
+}
+
+#' get operating system
+#' @export
+get_os <- function() {
+  if (.Platform$OS.type == "windows") {
+    "win"
+  } else if (Sys.info()["sysname"] == "Darwin") {
+    "mac"
+  } else if (.Platform$OS.type == "unix") {
+    "unix"
+  } else {
+    "unknown"
+  }
 }
