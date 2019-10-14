@@ -1,7 +1,7 @@
 Package: moonmisc
 Type: Package
 Title: Personal Utility Functions
-Version: 0.0.1
+Version: 0.0.2
 Author: Garrett Mooney
 Maintainer: Garrett Mooney <gmooney@mail.bradley.edu>
 Description: This package contains functions that I frequently use.
