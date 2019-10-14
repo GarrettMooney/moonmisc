@@ -36,11 +36,11 @@ NULL
 #' 1 %||% 2
 #' NULL %||% 2
 `%||%` <- function(x, y) {
-    if (is.null(x)) {
-          y
+  if (is.null(x)) {
+    y
   } else {
-        x
-    }
+    x
+  }
 }
 
 #' Default value for `length(x) == 0`.
@@ -86,6 +86,7 @@ hh <- function(d) d[1:5, 1:5]
 
 #' System convenience functions ------------------------------------------------
 #' Glue to shell functions
+#' @importFrom glue glue
 #' @export
 shell_transformer <- function(code, envir) {
   shQuote(eval(parse(text = code), envir))
@@ -144,4 +145,65 @@ youtube <- function(string) {
       .close = ">>"
     )
   )
+}
+
+#' Ripped from https://github.com/r-lib/covr/blob/master/R/utils.R
+#' @export
+compact <- function(x) {
+  x[viapply(x, length) != 0]
+}
+
+#' windows check
+#' @export
+is_windows <- function() {
+  .Platform$OS.type == "windows"
+}
+
+#' identical infix
+#' @export
+`%==%` <- function(x, y) identical(x, y)
+
+#' not identical infix
+#' @export
+`%!=%` <- function(x, y) !identical(x, y)
+
+#' is na
+#' @export
+is_na <- function(x) {
+    !is.null(x) && !is.symbol(x) && is.na(x)
+}
+
+#' temp dir
+#' @export
+temp_dir <- function() {
+  normalize_path(tempdir())
+}
+
+#' temp file
+#' @export
+temp_file <- function(pattern = "file", tmpdir = temp_dir(), fileext = "") {
+  normalize_path(tempfile(pattern, tmpdir, fileext))
+}
+
+#' vcapply
+#' @export
+vcapply <- function(X, FUN, ...) vapply(X, FUN, ..., FUN.VALUE = character(1))
+
+#' vdapply
+#' @export
+vdapply <- function(X, FUN, ...) vapply(X, FUN, ..., FUN.VALUE = numeric(1))
+
+#' viapply
+#' @export
+viapply <- function(X, FUN, ...) vapply(X, FUN, ..., FUN.VALUE = integer(1))
+
+#' vlapply
+#' @export
+vlapply <- function(X, FUN, ...) vapply(X, FUN, ..., FUN.VALUE = logical(1))
+
+#' trim whitespace
+#' @export
+trim_ws <- function(x) {
+    x <- sub("^[ \t\r\n]+", "", x, perl = TRUE)
+  sub("[ \t\r\n]+$", "", x, perl = TRUE)
 }

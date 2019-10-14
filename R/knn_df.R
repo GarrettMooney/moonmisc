@@ -20,6 +20,8 @@
 #' data$split <- as.logical(sample(0:1, nrow(data), TRUE))
 #'
 #' knn_df(data, Species ~ Sepal.Length + Sepal.Width, split, k = 5, prob = TRUE)
+#' @importFrom dplyr enquo filter pull
+#' @importFrom class knn
 #' @export
 knn_df <- function(data, formula, split, ...) {
   quo_split <- dplyr::enquo(split)

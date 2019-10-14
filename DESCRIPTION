@@ -15,4 +15,9 @@ Imports:
     lattice,
     magrittr,
     glue,
-    fasttime
+    fasttime,
+    dplyr,
+    class,
+    xml2,
+    rvest,
+    purrr
