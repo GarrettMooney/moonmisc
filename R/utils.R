@@ -157,9 +157,16 @@ compact <- function(x) {
 
 #' identical infix
 #' @export
+#' @param x Object
+#' @param y Object
+#' @name is-identical
 `%==%` <- function(x, y) identical(x, y)
 
 #' not identical infix
+#' @export
+#' @param x Object
+#' @param y Object
+#' @name is-not-identical
 #' @export
 `%!=%` <- function(x, y) !identical(x, y)
 
